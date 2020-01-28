@@ -46,3 +46,4 @@ variable "swarm_workers_instance_type" {
   description = "Machine type"
   default     = "g1-small"
 }
+

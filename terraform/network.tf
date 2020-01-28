@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "swarm" {
   name    = "swarm-firewall"
-  network = "${google_compute_network.swarm.name}"
+  network = google_compute_network.swarm.name
 
   allow {
     protocol = "icmp"
@@ -22,3 +22,4 @@ resource "google_compute_firewall" "swarm" {
 resource "google_compute_network" "swarm" {
   name = "swarm-network"
 }
+

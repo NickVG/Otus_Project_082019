@@ -1,5 +1,12 @@
-project          = "Project ID"
-public_key_path  = "~/.ssh/appuser.pub"
-private_key_path = "~/.ssh/appuser"
-disk_image       = "reddit-base"
+credentials = "~/repo/Otus-Project-252ac3252273.json"
+
+project = "otus-project-266509"
+
+region = "US"
+
+zone = "us-central1-a"
+
+ssh_user = "nick"
+
+ssh_pub_key_file = "~/.ssh/nick.pub"
 
