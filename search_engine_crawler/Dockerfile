@@ -1,27 +1,32 @@
 FROM ubuntu:16.04
 
-ENV MONGO 127.0.0.1
-ENV MONGO_PORT 27017
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
 
-RUN apt-get update
-RUN apt-get install -y python-pip git \
+RUN apt-get clean && apt-get update && apt update
+#RUN apt-get install -qy python3
+#RUN apt-get install -qy python3-pip 
+RUN apt-get install -y python3 python-pip git python3-pip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+RUN git clone https://github.com/NickVG/search_engine_crawler.git
 
-RUN git clone https://github.com/express42/search_engine_crawler.git
+WORKDIR /search_engine_crawler
+RUN pip install -r requirements.txt -r requirements-test.txt
+RUN python3 -m pip install bs4 \
+    && python3 -m pip install pika \
+    && python3 -m pip install pymongo \
+    && python3 -m pip install structlog \
+    && python3 -m pip install prometheus_client \
+    && python3 -m pip install requests \
+    && python3 -m pip install \
+    && python3 -m pip install lru_cache
+#RUN apt install python3-pip
+#RUN python3 -m pip install bs4
+ENV EXCLUDE_URLS='.*github.com'
 
-
-COPY start.sh /start.sh
-
-WORKDIR search_engine_crawler
-RUN pip install -r requirements.txt
-RUN cd /search_engine_ui && pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 80 8000
-
-RUN chmod 0777 /start.sh
-CMD ["/start.sh"]
+CMD ["python3","-u", "crawler/crawler.py", "https://vitkhab.github.io/search_engine_test_site"]
+#CMD ["/bin/bash"]
 

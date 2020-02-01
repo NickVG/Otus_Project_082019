@@ -1,0 +1,32 @@
+version: '3'
+services:
+  post_db:
+    hostname: post_db
+    image: mongo:${MONGO_VERSION}
+    container_name: mongodb-service
+    volumes:
+      - post_db:/data/db
+#    environment:
+#      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+    networks:
+      - backend
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    hostname: rabbitmq
+    container_name: rabbitmq-service
+    image: rabbitmq:${RABBITMQ_VERSION}
+    #    volumes:
+    # - rabbitmq:/var/lib/rabbitmq
+    networks:
+      - backend
+    ports:
+      - "8080:15672"
+      - "5672:5672"
+
+volumes:
+  post_db:
+  rabbitmq:
+networks:
+  frontend:
+  backend:
