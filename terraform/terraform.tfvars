@@ -10,3 +10,4 @@ ssh_user = "nick"
 
 ssh_pub_key_file = "~/.ssh/nick.pub"
 
+swarm_workers = 2

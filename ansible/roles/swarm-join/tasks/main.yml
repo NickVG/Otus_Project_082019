@@ -1,6 +1,11 @@
 - name: Join Swarm Cluster as a Worker
-  command: docker swarm join --token {{ token }} {{ manager }}:2377
-  register: worker
+#  command: docker swarm join --token {{ token }} {{ manager }}:2377
+#  register: worker
+  docker_swarm:
+    state: join
+    advertise_addr: ens4v1:4567
+    join_token: "{{ token }}"
+    remote_addrs:  'manager:2377'
 
 - name: Show Results
   debug: var=worker.stdout

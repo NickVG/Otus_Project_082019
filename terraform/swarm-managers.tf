@@ -7,7 +7,7 @@ resource "google_compute_instance" "managers" {
   boot_disk {
     initialize_params {
       image = var.image_name
-      size  = 100
+      size  = 30
     }
   }
 

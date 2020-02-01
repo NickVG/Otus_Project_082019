@@ -1,5 +1,7 @@
 - name: Swarm Init
-  command: docker swarm init --advertise-addr {{ inventory_hostname }}
+  #  command: docker swarm init --advertise-addr {{ inventory_hostname }}
+  docker_swarm:
+    state: present
 
 - name: Get Worker Token
   command: docker swarm join-token worker -q
