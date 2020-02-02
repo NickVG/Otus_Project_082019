@@ -3,7 +3,7 @@ services:
   search_engine_ui:
     image: ingorbunovi/search_engine_ui:2.1
     environment:
-      - MONGO=db
+      - MONGO=post_db
       - MONGO_PORT=27017
 #        EXCLUDE_URLS=${EXCLUDE_URLS}
     ports:
