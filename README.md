@@ -16,8 +16,22 @@
 
 	Терраформ для равзёртывания docker swarm в составе 3х узлов
 	ansible playbooks для наката swarm
-	docker images и docker-compose для старта приложения
+	docker images и docker-compose файлы для старта приложения
 
-*** Как запустить проект***
+***Как запустить проект ***
+
+	git clone https://github.com/NickVG/Otus_Project_082019.git
+	cd terraform && terraform apply
+	cd ../ansible && ansible-playbook -i inventory main.yml
+	
+	подклчиться к узлу manager
+	cd /otus/docker
+	docker-compose up -d
+	docker-compose -f docker-compose-crawler.yml up -d
+	docker-compose -f docker-compose-ui.yml up -d
+
+***Что должно получиться в итоге***
+
+	Выполнены все условия курсового проекта реализованные в docker-swarm
 
 	
