@@ -24,7 +24,7 @@ variable "ssh_pub_key_file" {
 
 variable "image_name" {
   description = "Image to be used"
-  default     = "coreos-stable-1911-5-0-v20181219"
+  default     = "coreos-stable-2303-3-0-v20191203"
 }
 
 variable "swarm_managers" {

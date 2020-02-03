@@ -1,7 +1,7 @@
 - name: Swarm Init
-  #  command: docker swarm init --advertise-addr {{ inventory_hostname }}
   docker_swarm:
     state: present
+  become: yes
 
 - name: Get Worker Token
   command: docker swarm join-token worker -q
@@ -16,3 +16,17 @@
 
 - name: Show Manger Token
   debug: var=manager_token.stdout
+
+- name: Create directory for repo
+  file:
+    path: /otus
+    state: directory
+    mode: '0755'
+  become: yes
+
+- name: Clone repo
+  git:
+    repo: https://github.com/NickVG/Otus_Project_082019.git
+    dest: /otus
+  become: yes
+
