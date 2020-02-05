@@ -30,6 +30,17 @@
 	docker-compose -f docker-compose-crawler.yml up -d
 	docker-compose -f docker-compose-ui.yml up -d
 
+***Запуск тестов***
+	Для crawler
+	docker-compose -f docker-compose-crawler.yml exec search_engine_crawler bash
+	python3 -m unittest discover -s tests/
+	python3-coverage run -m unittest discover -s tests/
+	python3-coverage report --include crawler/crawler.py
+
+	Для UI
+	docker-compose -f docker-compose-crawler.yml exec search_engine_crawler bash
+
+
 ***Что должно получиться в итоге***
 
 	Выполнены все условия курсового проекта реализованные в docker-swarm
