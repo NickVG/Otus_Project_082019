@@ -24,9 +24,25 @@ services:
       - "8080:15672"
       - "5672:5672"
 
+  prometheus:
+    image: ${USER_NAME}/prometheus:1.0
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=1d'
+    networks:
+      - backend
+      - frontend
+
 volumes:
   post_db:
   rabbitmq:
+  prometheus_data:
+
 networks:
   frontend:
   backend:
