@@ -12,3 +12,5 @@ ssh_pub_key_file = "~/.ssh/nick.pub"
 
 swarm_workers = 2
 
+image_name = "ubuntu-1604-xenial-v20200129"
+

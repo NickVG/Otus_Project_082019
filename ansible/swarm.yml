@@ -1,24 +1,4 @@
 ---
-- name: Install Python
-  hosts: managers:workers
-  gather_facts: False
-  roles:
-    - python
-
-- name: Prepare infra
-  become: true
-  become_method: sudo
-  hosts: "all"
-  roles:
-    - apt-update
-
-- name: Install Docker
-  become: true
-  become_method: sudo
-  hosts: "all"
-  roles:
-    - docker-install
- 
 - name: Init Swarm cluster
   hosts: managers
   gather_facts: False

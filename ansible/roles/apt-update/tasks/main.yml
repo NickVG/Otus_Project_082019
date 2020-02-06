@@ -1,0 +1,29 @@
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: Install Python
+  apt:
+    name: python
+    state: latest
+    update_cache: yes
+
+- name: Install Python-pip
+  apt:
+    name: python-pip
+    state: absent
+
+- name: Install Python-pip 
+  apt:
+    name: python-pip
+    state: latest
+    update_cache: yes
+
+- name: install python dependencies
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    name: python3-pip
