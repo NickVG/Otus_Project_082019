@@ -14,7 +14,7 @@
 
 ***Что сделано***
 
-	Терраформ для равзёртывания docker swarm в составе 3х узлов
+	Терраформ для равзёртывания docker swarm в составе 3х узлов(manager и два worker)
 	ansible playbooks для наката swarm
 	docker images и docker-compose файлы для старта приложения
 
@@ -24,6 +24,7 @@
 	cd terraform && terraform apply
 	cd ../ansible && ansible-playbook -i inventory main.yml
 	
+	*В данный момент требуется дополнительная установка docker-compose
 	подклчиться к узлу manager
 	cd /otus/docker
 	docker-compose up -d
@@ -31,6 +32,7 @@
 	docker-compose -f docker-compose-ui.yml up -d
 
 ***Запуск тестов***
+
 	Для crawler
 	docker-compose -f docker-compose-crawler.yml exec search_engine_crawler bash
 	python3 -m unittest discover -s tests/
@@ -39,7 +41,9 @@
 
 	Для UI
 	docker-compose -f docker-compose-crawler.yml exec search_engine_crawler bash
-
+	python -m unittest discover -s tests/
+	coverage run -m unittest discover -s tests/
+	coverage report --include ui/ui.py
 
 ***Что должно получиться в итоге***
 
