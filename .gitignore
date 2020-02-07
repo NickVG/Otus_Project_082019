@@ -7,4 +7,4 @@ variables.json
 .terraform
 jdauphant.nginx
 .env
-
+/home/nick/repo/Otus_Project_082019/monitoring/alertmanager/config.yml
