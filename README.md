@@ -22,16 +22,16 @@
 
 	git clone https://github.com/NickVG/Otus_Project_082019.git
 	cd terraform && terraform apply
-	cd ../ansible && ansible-playbook -i inventory main.yml
+	cd ../ansible && ansible-playbook -i inventory main.yml -e 'ansible_python_interpreter=/usr/bin/python'
 	
-	*В данный момент требуется дополнительная установка docker-compose
-	подклчиться к узлу manager
+	*В данный момент требуется дополнительная установка docker-compose(ставится в данный момент через ansible)
+	подключиться к узлу manager
 	cd /otus/docker
 	docker-compose up -d
 	docker-compose -f docker-compose-crawler.yml up -d
 	docker-compose -f docker-compose-ui.yml up -d
 
-***Запуск тестов***
+Запуск тестов
 
 	Для crawler
 	docker-compose -f docker-compose-crawler.yml exec search_engine_crawler bash
