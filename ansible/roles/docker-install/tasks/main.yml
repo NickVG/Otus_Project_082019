@@ -60,8 +60,8 @@
     name: docker
     state: latest
 
-#- name: Install Docker-compose
-#  pip:
-#    name: docker-compose
-#    state: latest
+- name: Install Docker-compose
+  pip:
+    name: docker-compose
+    state: latest
 
