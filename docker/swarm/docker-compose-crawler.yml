@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  search_engine_crawler:
+    hostname: search_engine_crawler
+    image:  ingorbunovi/search_engine_crawler:ubuntu2.3
+    environment:
+      - MONGO=post_db
+      - MONGO_PORT=27017
+      - RMQ_HOST=rabbitmq
+#      - RMQ_USERNAME=${RMQ_USERNAME}
+#      - RMQ_PASSWORD=${RMQ_PASSWORD}
+      - CHECK_INTERVAL=30
+      - RMQ_QUEUE=crawler
+#        EXCLUDE_URLS=${EXCLUDE_URLS}
+    networks:
+      - backend
+      - frontend
+
+networks:
+  frontend:
+  backend:
+
