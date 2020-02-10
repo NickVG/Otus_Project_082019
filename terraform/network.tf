@@ -8,7 +8,7 @@ resource "google_compute_firewall" "swarm" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22", "2377", "7946", "8080", "80", "8000", "9090"]
+    ports    = ["22", "2377", "7946", "8080", "80", "8000", "9090", "9292", "3000", ]
   }
 
   allow {
