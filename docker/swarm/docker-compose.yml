@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  post_db:
+    hostname: post_db
+    image: mongo:3.2
+    volumes:
+      - post_db:/data/db
+#    environment:
+#      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+    networks:
+      - backend
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    hostname: rabbitmq
+    image: ingorbunovi/rabbitmq:1.0
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    networks:
+      - backend
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+volumes:
+  post_db:
+  rabbitmq:
+
+networks:
+  frontend:
+  backend:
