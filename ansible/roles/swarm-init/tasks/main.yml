@@ -30,3 +30,6 @@
     dest: /otus
   become: yes
 
+- name: drain docker node
+  command: docker node update --availability drain manager
+
