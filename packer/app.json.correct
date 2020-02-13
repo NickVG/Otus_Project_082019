@@ -1,0 +1,28 @@
+{
+   "variables": {
+	    "zone":"europe-wes1-b",
+	    "machine_type": "f1-micro",
+	    "source_image_family": "ubuntu-1604-lts",
+	    "machine_type":"f1-micro"
+	},
+    "builders": [
+        {
+            "type": "googlecompute",
+	    "image_name":"reddit-app-base",
+            "image_family": "reddit-base",
+            "source_image_family": "{{ user `source_image_family` }}",
+            "zone": "europe-west1-b",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "machine_type": "{{user `machine_type` }}",
+	    "project_id":"{{ user `project_id` }}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
+}
+

@@ -1,74 +1,28 @@
-image: ubuntu:16.04
-
 stages:
   - build
   - test
-  - review
-  - production
-
-variables:
-#  DATABASE_URL: 'mongodb://mongo/user_posts'
-  WORK_DIR: ${CI_PROJECT_NAME}
-  BRANCH: ${CI_COMMIT_REF_NAME}
-  REPO: https://gitlab.com/otus201908/final.git
-
-before_script:
-  - cd reddit
-  - bundle install
+  - deploy
 
 build_job:
   stage: build
+  when: manual
   script:
     - echo 'Building'
 
 test_unit_job:
   stage: test
-  services:
-    - mongo:latest
+  when: manual
   script:
-    - ruby simpletest.rb
+    - echo 'Testing 1'
 
 test_integration_job:
   stage: test
+  when: manual
   script:
     - echo 'Testing 2'
 
-deploy_dev_job:
-  stage: review
-  script:
-    - echo 'Deploy'
-  environment:
-    name: dev
-    url: http://dev.example.com
-
-branch review:
-  stage: review
-  script: echo "Deploy to $CI_ENVIRONMENT_SLUG"
-  environment:
-    name: branch/$CI_COMMIT_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG.example.com
-  only:
-    - branches
-  except:
-    - master
-
-staging:
-  stage: stage
+deploy_job:
+  stage: deploy
   when: manual
   script:
     - echo 'Deploy'
-  environment:
-    name: stage
-    url: https://beta.example.com
-
-production:
-  stage: production
-  when: manual
-  only:
-    - /^\d+\.\d+\.\d+/
-  script:
-    - echo 'Deploy'
-  environment:
-    name: production
-    url: https://example.com
-
