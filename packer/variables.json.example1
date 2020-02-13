@@ -1,0 +1,13 @@
+{
+   "project_ID":"infra-00000000",
+   "zone":"europe",
+   "machine_type":"f1-micro",
+   "source_image_family": "ubuntu-1810",
+   "machine_type":"f1-micro",
+   "image_description":"Some Description.",
+   "disk_size":"10",
+   "disk_type":"pd-standard",
+   "network":"network type",
+   "tags":"network tag"
+}
+
